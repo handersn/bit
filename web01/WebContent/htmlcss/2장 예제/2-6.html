@@ -9,10 +9,24 @@
     <a href="#gamma">Move to Gamma</a>
     <hr />
     <h1 id="alpha">Alpha</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     <h1 id="beta">Beta</h1>
     <p>Duis nec risus a ante pellentesque rhoncus at et leo.</p>
     <h1 id="gamma">Gamma</h1>
     <p>Nullam porta, felis sit amet porttitor vestibulum.</p>
+    
+    <script>
+    var v1 = document.getElementById("beta");
+    v1.innerHTML = "오오오!";
+    
+    // v1이 가리키는 엘리먼트를 사용자가 마우스로 건드리면
+    // 블록안의 명령어를 수행한다.
+    v1.onclick = function(){
+    	alert("누르지마!!!");
+    	
+    };
+    
+    </script>
+    
 </body>
 </html>
