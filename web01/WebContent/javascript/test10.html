@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>동적 타입 바인딩</title>
+</head>
+
+
+<body>
+
+<script>
+"use strict";
+//동적 타입 바인딩=> 값을 할당할 때 변수의 타입이 결정됨.
+
+/* 반복수행하는 명령어를 별도로 묶어서 필요할 때마다 사용
+
+*/
+
+function displayVarType(){
+	console.log("----------------------");
+	 console.log(v1);
+	 console.log(v2);
+	 console.log(v3);
+	 console.log(v4);
+	 console.log(v5);
+	 console.log(v6);
+	 console.log(v7);
+	 console.log("----------------------");
+	 	
+}
+
+ var v1,v2,v3,v4,v5,v6,v7;
+ 
+ 
+   
+ v1 = 10; //number
+ v2 = 3.14;  //number
+ v3 = "홍길동";  //string
+ v4 = true;   //boolean
+ v5 = null;   //object
+ v6 = {name:"홍길동" ,age:30}  //object
+ v7 = function() {}; //function
+ 
+ displayVarType();
+ 
+ v4=20;   //number
+ v5="okok";  //string
+ v6=true;   //boolean
+ v7=20;    //number
+ 
+ displayVarType();
+ 
+
+
+</script>
+
+
+</body>
+</html>
