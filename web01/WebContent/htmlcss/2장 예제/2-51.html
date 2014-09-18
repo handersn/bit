@@ -2,19 +2,67 @@
 <html>
 <head>
     <title>HTML5 Basic</title>
+    <style>
+    div {
+    /* border: 1px solid blue;*/
+    /* padding: 10px 10px 10px 100px;  top right bottom left*/
+    /* padding: 10px 10px;  top bottom */ 
+    padding: 10px; /* all*/
+    /* padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px; */
+    
+    }
+    
+    #header{
+      background-color: silver;
+    }
+    
+    #sidebar{
+    width: 160px;
+    float: left;
+    background-color: red;
+    }
+    
+    #content{
+      background-color:#fafad2;
+      margin-left: 170px;
+    }
+    #footer{
+       background-color: #e0ffff;
+    }
+    a:link{
+      color: white;
+    }
+    
+    a:hover{
+    background-color: white;
+    color: navy;
+       pont-weight: bold;
+    }
+    
+    #popup{
+      position: absolute;
+      left:100px;
+      top:100px;
+    }
+    
+    </style>
+    
 </head>
 <body>
-    <div>
+    <div id="header">
         <h1>HTML5 Header</h1>
     </div>
-    <div>
+    <div id="sidebar">
         <ul>
             <li><a href="#">Menu - 1</a></li>
             <li><a href="#">Menu - 2</a></li>
             <li><a href="#">Menu - 3</a></li>
         </ul>
     </div>
-    <div>
+    <div id="content">
         <div>
             <h1>Lorem ipsum dolor sit amet</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -24,8 +72,22 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
     </div>
-    <div>
+    <div id="footer">
         <span>서울특별시 강서구 내발산동</span>
     </div>
+    <div id="popup">
+     <img src="image1.jpg">
+     <button id="close">X</button>    
+    </div>
+    
+    
+    <script>
+    var e1=document.getElementById("close");
+    e1.onclick=function(){
+    	var popup = document.getElementById("popup");
+    	popup.style.display = 'none';
+    	
+    }
+    </script>
 </body>
 </html>
