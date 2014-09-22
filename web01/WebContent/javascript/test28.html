@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수 파라미터 다루기</title>
+</head>
+
+<body>
+
+<script>
+"use strict";
+
+//파라미터는 var 을 선언하지 않는다.
+function plus(a,b){
+	return a+b;	
+}
+
+var sum = plus(10,20);
+console.log(sum);
+
+//자바스크립트는 파라미터 갯수 돠 더 많은 값을 받을 수 있다.
+sum = plus(10,20,30,40); //오류가  아님
+console.log(sum);
+
+sum = plus(30); // b 파라미터가 undefined 이기 때문에 계산이 안됨.
+console.log(sum);// 결과 : NaN
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

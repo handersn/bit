@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<script >
+"use strict"
+
+var calcObj = new Object();
+calcObj.result=0;
+calcObj.plus = function(value){this.result +=value};
+calcObj.minus = function(value){this.result -=value};
+calcObj.multiple = function(value){this.result *=value};
+calcObj.divide = function(value){this.result /=value};
+
+calcObj.plus(5);
+calcObj.multiple(3);
+console.log(calcObj.result);
+console.log(calcObj.toString());
+</script>
+
+</body>
+</html>
