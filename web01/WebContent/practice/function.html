@@ -9,17 +9,16 @@
 <script >
 "use strict"
 
-var calcObj = new Object();
-calcObj.result=0;
-calcObj.plus = function(value){this.result +=value};
-calcObj.minus = function(value){this.result -=value};
-calcObj.multiple = function(value){this.result *=value};
-calcObj.divide = function(value){this.result /=value};
+var chile=window.open('http://www.google.com', 'w1', 'left=0,top=0,width=300,height=200');
+child.moveTo(100,100);
 
-calcObj.plus(5);
-calcObj.multiple(3);
-console.log(calcObj.result);
-console.log(calcObj.toString());
+window.setInterval(function(){
+	child.moveBy(10,10);
+	
+}, 3000);
+	
+		
+
 </script>
 
 </body>
