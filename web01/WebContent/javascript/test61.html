@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>이벤트 전달: stopPropagation()/stopImmediatePropagation()</title>
+<title>리스너 등록: addEventListener()/removeEventListener </title>
 <style>
 div {
   border: 1px solid red;
@@ -33,6 +33,7 @@ span {
 <script>
 "use strict"; 
 
+
 // stopPropagation() : 이벤트의 버블릿 중단!
 document.getElementById('d1').onclick = function(event) {
   console.log('d1....');
@@ -53,10 +54,35 @@ document.getElementById('p2').onclick = function(event) {
   console.log('pppppp2....');
 }
 
-document.getElementById('s1').onclick = function(event) {
-  console.log('s1111111');
+var e1=document.getElementById('s1');
+
+//리스너를 등록한 순서대로 호출한다.
+e1.addEventListener('click',function(event){
+	  console.log('(1)=>s11111111');  
+	  event.stopImmediatePropagation();// 즉시 이벤트 전달을 멈춰라!
+	});
+	
+e1.onclick = function(event) {
+  console.log('(2)=>s1111111');
   event.stopPropagation(); // 부모로 버블하지 말라!
-}
+ 
+};
+
+
+
+e1.addEventListener('click',function(event){
+	  console.log('(3)=>s11111111');  
+	});
+	
+	if(e1.attachEvent){
+	 //<= IE8
+	e1.attachEvent('onclick', function(){
+		window.event		
+	}); 
+	}
+
+
+
 document.getElementById('s2').onclick = function(event) {
   console.log('s2222222');
 }
