@@ -79,56 +79,53 @@
 "use strict"
 
 function Board(title,content,writer,password){
-	this.title=title;
+	this.title=title;	
 	this.content=content;
 	this.writer=writer;
 	this.password=password;
 	this.date=new Date();
-	this.count=0;	
+	this.count=count;	
 }
 
 function resetForm(){
-	var event = new MouseEvent('click',{
-		'view':window,
-		'bubbles':true,
-		'cancelable':true
-	});
+	var event=new EventMouse('click',{});
 	
 	document.getElementById("btnCancel").dispatchEvent(event);
+	
 	
 }
 
 var boardList=[];
-
 document.getElementById("btnAdd").onclick=function(event){
-	var board=new Board(
-			document.getElementById("title").value,		
+	var board = new Board(
+			document.getElementById("title").value,
 			document.getElementById("content").value,
 			document.getElementById("writer").value,
-			document.getElementById("password").value	
-	);	
-
-boardList.push(board);
-
-resetForm();
-
-outputBoardList();
-};
-
-function outputBoardList(){
-	for(var i in boardList){
-		console.log(boardList[i].title,
-				boardList[i].content,
-				boardList[i].writer,
-				boardList[i].password,
-				boardList[i].date,
-				boardList[i].count
-				);	
+			document.getElementById("password").value
+			)
+	boardList.push(board);
+	
+	resetForm();
+	
+	outputBoard();	
+	
 	}
 	
-	
-}
-
+	function outputBoardList(){
+		for(var i in boardList){
+			console.log(boardList[i].title,
+					boardList[i].content,
+					boardList[i].writer,
+					boardList[i].password,
+					boardList[i].date,
+					boardList[i].count
+					);
+			
+		}
+		
+	}
+		
+		
 		
 
 </script>
