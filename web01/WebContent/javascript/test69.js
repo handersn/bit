@@ -1,15 +1,13 @@
 "use strict"; 
 
-//목표: 라이브러리화4 
-//val() 조미료 추가
-//css() 조미료 추가
-//생닭 가공 => bit() if문 참조
+//목표: 라이브러리화5 
+//val() 함수에 읽기 기능 추가
+//삭제, 변경 버튼의 리스너 추가
+//bit() 함수를 변경 => querySelectorAll()을 사용하여 처리.
 
 
 
 changeState('create');
-
-var toYYYYMMDD = new Date();
 
 function changeState(state) {
 	var stateMap = {
@@ -19,16 +17,8 @@ function changeState(state) {
 
 	stateMap[state] = '';
 
-	var detailClass = document.querySelectorAll('.detail');
-	var createClass = document.querySelectorAll('.create');
-
-	for (var i = 0; i < detailClass.length; i++) {
-		$(detailClass[i]).css('display', stateMap.detail);
-	}
-
-	for (var i = 0; i < createClass.length; i++) {
-		$(createClass[i]).css('display', stateMap.create);
-	}
+	$('.detail').css('display', stateMap.detail);
+	$('.create').css('display', stateMap.create);
 }
 
 //게시글을 저장하는 객체 생성자 함수
@@ -53,10 +43,10 @@ $('#btnCancel').click(function(event) {
 
 $('#btnAdd').click(function(event) {
 	var board = new Board(
-			$('#title').value,
-			$('#content').value,
-			$('#writer').value,
-			$('#password').value);
+			$('#title').val(),
+			$('#content').val(),
+			$('#writer').val(),
+			$('#password').val());
 
 	boardList.push(board);
 
@@ -65,18 +55,30 @@ $('#btnAdd').click(function(event) {
 	refreshBoardList();
 });
 
+$('#btnDelete').click(function(event){
+	var no = $('#no').val();
+	boardList.splice(no,1);
+	refreshBoardList();
+	resetForm();
+});
+
+$('#btnChange').click(function(event){
+	var no = $('#no').val();
+	var board = boardList[no];
+	board.title = $('#title').val();
+	board.content = $('#content').val();
+	refreshBoardList();
+});
+
 function refreshBoardList() {
 	var boardTable = $('#boardTable');
-	//var tbody = boardTable.children[0]; // <tbody>
-	var tbody = boardTable.firstElementChild; // <tbody>
-	for (var i = tbody.children.length -1 ; i > 0; i--) {
-		//console.log(tbody.children[i]);
-		tbody.removeChild(tbody.children[i]);
-	}
+	
+	$('.dataRow').remove();
 
 	for (var i in boardList) {
 		$('<tr>')
-			.appendTo(tbody)
+			.appendTo(boardTable)
+			.attr('class', 'dataRow')
 			.append($('<td>').html(i))
 			.append($('<td>')
 					.append($('<a>')
@@ -96,8 +98,8 @@ function loadBoardDetail(event) {
 
 	changeState('detail');
 
-	var board = boardList[this.getAttribute('bno')];
-	$('#no').val(this.getAttribute('bno'));
+	var board = boardList[$(this).attr('bno')];
+	$('#no').val($(this).attr('bno'));
 	$('#title').val(board.title);
 	$('#content').val(board.content);
 	$('#writer').val(board.writer);
