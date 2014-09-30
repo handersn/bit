@@ -14,8 +14,9 @@
   
   font-size: 폰트의 높이
   color : 폰트 색상
-  font-weight: lighter, normail,bola,bolder
+  font-weight: lighter, normal,bola,bolder 폰트두께
   font-decoration: none, underline,overline,line-through,blink
+  font-style: italic, oblique
   
   폰트 크기 단위:px, %, em(배수),
    상수 값(xx-small, x-small, small, medium, large, x-large, xx-large)
@@ -25,8 +26,8 @@
    2)나머지 태그에 대해서는 기본폰트를 기준으로 상대크기를 지정하라!
 */
  body{
- font-family: verdana, Geneva ,Arial, sans-serif;
-  font-size: small;
+ font-family: Garuda, verdana, Geneva ,Arial, sans-serif;
+ font-size: small;
  color: darkgray;
  font-weight:  bolder; 
  }
@@ -41,6 +42,12 @@
  
  #h2{
   font-size: 140%;
+ }
+ 
+ p{
+   /*font-style: italic;  폰트에서 이탤릭체를 사용하여 출력*/
+   font-style: oblique;/* 폰트에 이탤릭체가 없다면 계산하여 처리한다.*/
+                            /* 이텔릭체가 매끄럽지 않다.*/                       
  }
  
  

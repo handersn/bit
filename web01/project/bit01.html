@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+<style>
+
+#body{padding: 100px;}
+#boardTable{width: 100%; height : 50px;}
+
+</style>
+</head>
+
+<body id = "body" style="background-color:#FFDF24">
+	<!-- 게시판 목록 -->
+<table>
+	<tr class="detail">
+  <th>번호</th> 
+  <td><input type="text" id="no"></td>
+</tr>
+<tr>
+  <th>제목</th> 
+  <td><input type="text" id="title"></td>
+</tr>
+<tr> 
+  <th>내용</th> 
+  <td><textarea id="content"></textarea></td>
+</tr>
+<tr>
+  <th>작성자</th> 
+  <td><input type="text" id="writer"></td>
+</tr>
+<tr class="create">
+  <th>암호</th> 
+  <td><input type="password" id="password"></td>
+</tr>
+<tr class="detail">
+  <th>등록일</th> 
+  <td><input type="text" id="date"></td>
+</table>		
+	
+</body>
+</html>
