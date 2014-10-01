@@ -11,6 +11,20 @@
   $(function() {
     $( "#menu" ).menu();
   });
+  
+  function nextRandomInterger(limit){
+	  return Math.round(Math.random() * limit);	  
+  }
+  
+  var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  
+  function randomAlphabet(){
+	  return alphabet.charAt(nextRandomInterger(25));	  
+  }
+  
+  function randomSpeed(maxSpeed){
+	  return Math.random()
+  }
   </script>
   <style>
   .ui-menu { width: 150px; }
@@ -54,4 +68,6 @@
  
  
 </body>
+
+
 </html>

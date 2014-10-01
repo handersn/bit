@@ -2,42 +2,278 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판</title>
+<title>\B0Խ\C3\C6\C7</title>
 <style>
 
-#body{padding: 100px;}
-#boardTable{width: 100%; height : 50px;}
-
+#main-title {color:#050099; font-size:30pt; margin-top:20%;}
+html { height:100% }
+body { height:98%; }
 </style>
 </head>
 
-<body id = "body" style="background-color:#FFDF24">
-	<!-- 게시판 목록 -->
-<table>
-	<tr class="detail">
-  <th>번호</th> 
+<body id="body" style="background-color:#FFDF24" align="center">
+
+
+
+
+<div class='create' >
+<table style="width:600px" align="center">
+<tr><td><hr /></td></tr>
+<tr>
+<td id = "main-title">\B0\A1\C0\D4\C0\DA \B8\F1\B7\CF</td>
+</tr>
+<tr><td><hr /></td></tr>
+<table id='boardTable' border='1' align="center">
+<tr>
+  <th>\B9\F8ȣ</th>
+  <th>\C0̸\A7</th>
+  <th>\BE\C6\C0̵\F0</th>
+  <th>\C6н\BA\BF\F6\B5\E5</th>
+  <th>\B5\EE\B7\CF\C0\CF</th>
+</tr>
+</table>
+
+</div>
+
+
+
+
+
+
+
+<!-- ------------ Login -------------- -->
+
+<div>
+
+<tr style="height:30%"><td></td></tr>
+<tr style="height:40%; text-align:center"><td>
+<table style="width:600px" align="center">
+<tr><td><hr /></td></tr>
+<tr>
+<td id = "main-title">LOGIN</td>
+</tr>
+<tr><td><hr /></td></tr>
+</table>
+
+<table align="center" height="90" class = "test">
+<tr>
+<th>\BE\C6\C0̵\F0 : </th>
+<td><input type = "text" id = "id"></td>
+</tr>
+
+<tr>
+<th>\C6н\BA\BF\F6\B5\E5 : </th>
+<td><input type = "password" id = "password" class = "test"></td>
+</tr>
+</table>
+
+<table align="center" height="50">
+		<tr>
+			<td id=a><a style=text-decoration:none href="" >ȸ\BF\F8\B0\A1\C0\D4 |</td>
+			<td><a style=text-decoration:none href="" >\B7α\D7\C0\CE |</td>
+			<td><a style=text-decoration:none href="" >\C3\EB\BC\D2</td>
+		</tr>
+</table>
+
+</div>
+<!-- ---------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- -------------Sign-up--------------- -->
+<div>
+<table style="width:600px" align="center">
+<tr><td><hr /></td></tr>
+<tr>
+<td id = "main-title">Sign-up</td>
+</tr>
+<tr><td><hr /></td></tr>
+</table>
+
+<form>
+<table align="center" height="90">
+<tr class="detail">
+  <th >\B9\F8ȣ : </th> 
   <td><input type="text" id="no"></td>
 </tr>
+
 <tr>
-  <th>제목</th> 
-  <td><input type="text" id="title"></td>
-</tr>
-<tr> 
-  <th>내용</th> 
-  <td><textarea id="content"></textarea></td>
-</tr>
-<tr>
-  <th>작성자</th> 
+  <th>\C0\CC \B8\A7 : </th> 
   <td><input type="text" id="writer"></td>
 </tr>
+
+<tr>
+  <th>\BE\C6\C0̵\F0 : </th> 
+  <td><input type="text" id="id"></td>
+</tr>
+
+
 <tr class="create">
-  <th>암호</th> 
+  <th>\C6н\BA\BF\F6\B5\E5 : </th> 
   <td><input type="password" id="password"></td>
 </tr>
 <tr class="detail">
-  <th>등록일</th> 
+  <th>\B5\EE\B7\CF\C0\CF : </th> 
   <td><input type="text" id="date"></td>
-</table>		
+</tr>
+</table>
+<button id='move' type='button'>ù ȭ\B8\E9\C0\B8\B7\CE</button>
+<button id='btnAdd' type='button' class='create' >\B0\A1\C0\D4</button>
+<button id='btnChange' type='button' class='detail'>\BA\AF\B0\E6</button>
+<button id='btnDelete' type='button' class='detail'>\BB\E8\C1\A6</button>
+<button id='btnCancel' type='reset'>\C3\EB\BC\D2</button>
+</form>
+
+</div>
+<!-- ---------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- \B8\F1ǥ: \C0ڹٽ\BAũ\B8\B3Ʈ\BF\CD HTML \BCҽ\BA \BAи\AE -->
+<script src='common.js'></script>
+<script>
+"use strict"; 
+
+changeState('create');
+
+
+function changeState(state) {
+	var stateMap = {
+			create: 'none',
+			detail: 'none',
+			login: 'none',
+			signup:'none'
+			
+	};
+
+	stateMap[state] = '';
+
+	$('.detail').css('display', stateMap.detail);
+	$('.create').css('display', stateMap.create);
+	$('.login').css('display', stateMap.login);
+	$('.signup').css('display', stateMap.signup);
+}
+
+//\B0Խñ\DB\C0\BB \C0\FA\C0\E5\C7ϴ\C2 \B0\B4ü \BB\FD\BC\BA\C0\DA \C7Լ\F6
+function Board(id, writer, password) {
+	this.id = id;
+	this.writer = writer;
+	this.password = password;
+	this.date = new Date();
+}
+
+function resetForm() {
+	$('#btnCancel').click();
+}
+
+var boardList = [];
+
+$('#btnCancel').click(function(event) {
+	changeState('create');
+});
+
+$('#btnAdd').click(function(event) {
+	var board = new Board(
+			$('#id').val(),
+			$('#writer').val(),
+			$('#password').val());
+
+	boardList.push(board);
+
+	resetForm();
+
+	refreshBoardList();
+});
+
+$('#btnDelete').click(function(event){
+	var no = $('#no').val();
+	boardList.splice(no,1);
+	refreshBoardList();
+	resetForm();
+});
+
+$('#btnChange').click(function(event){
+	var no = $('#no').val();
+	var board = boardList[no];
+	board.id = $('#id').val();
+	refreshBoardList();
+});
+
+function refreshBoardList() {
+	var boardTable = $('#boardTable');
 	
+	$('.dataRow').remove();
+
+	for (var i in boardList) {
+		$('<tr>')
+			.appendTo(boardTable)
+			.append($('<td>').html(i))
+			.attr('class', 'dataRow')
+			.append($('<td>').html(boardList[i].writer))
+			.append($('<td>')
+					.append($('<a>')
+							.attr('bno', new String(i))
+							.attr('href', '#')
+							.click(loadBoardDetail)
+							.html(boardList[i].id)))
+			.append($('<td>').html(boardList[i].password))
+			.append($('<td>').html($.toYYYYMMDD(boardList[i].date)));
+			
+	}
+}
+
+function loadBoardDetail(event) {
+	event.preventDefault();
+
+	changeState('detail');
+
+	var board = boardList[$(this).attr('bno')];
+	$('#no').val($(this).attr('bno'));
+	$('#writer').val(board.writer);
+	$('#id').val(board.id);
+	$('#password').val(board.pasword);
+	$('#date').val($.toYYYYMMDD(board.date));
+}
+
+</script>
+
 </body>
 </html>

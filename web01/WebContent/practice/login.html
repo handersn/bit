@@ -2,64 +2,59 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입 유효성</title>
+<title>로그인창</title>
  <script type="text/javascript">
-        </script>
-</head>
-<body>
-
- <h1>회원가입 유효성 체크</h1>
-       
-        <form action="" method="post" onsubmit="return validate();">
-               <!-- input타입이 텍스트인경우 일반 텍스트로 입력받는다. -->
-               <label for="userid">* 유저아이디</label>
-               <input type="text" name="userid" id="userid" /> <br />
-              
-               <!-- password인 경우 입력한 값이 보이지 않는다. -->
-               <label for="pass">* 비밀번호</label>
-               <input type="password" name="pass" id="pass" /> <br />
-               <label for="pass1">* 비밀번호확인</label>
-               <input type="password" name="pass1" id="pass1" /> <br />
-               <label for="name">* 이름</label>
-               <input type="text" name="name" id="name" /> <br />
-               <label for="email">* 이메일</label>
-               <input type="text" name="email" id="email" /> <br />
+</script>
+ <style>
+ body{
+ background-color: #ffdf24;
+ text-align: center;
+ }
  
-               <label for="tel1">전화번호</label>
-               <input type="text" name="tel1" id="tel1" maxlength="3"/>-
-               <input type="text" name="tel2" id="tel2" maxlength="4"/>-
-               <input type="text" name="tel3" id="tel3" maxlength="4"/> <br />
-              
-               <!-- select는 option중 한가지를 선택하도록 한다. -->
-               <label for="job">직업</label>
-               <select name="job" id="job">
-                       <option>개발자</option>
-                       <option>프로그래머</option>
-                       <option>자영업자</option>
-               </select> <br />
-              
-               <!-- radio는 여러개 선택이 불가능하다. -->
-               <label for="gender">성별</label>
-               <input type="radio" name="gender" value ="m" /> 남
-               <input type="radio" name="gender" value ="f" /> 여  <br />
-                <label for="hobby">취미</label>
-               
-                <!-- checkbox는 여러개 선택이 가능하다. -->
-                <input type ="checkbox" name="hobby" value="reading" /> 독서
-                <input type ="checkbox" name="hobby" value="drama" /> 드라마보기
-                <input type ="checkbox" name="hobby" value="soccer" /> 축구 <br />
-                <input type ="checkbox" name="hobby" value="movie" /> 영화보기
-                <input type ="checkbox" name="hobby" value="basket" /> 농구
-                <input type ="checkbox" name="hobby" value="game" /> 게임 <br />
-               
-                <!-- 입력한 값을 리셋한다. -->
-                <input type="reset" value="리셋" />
-               
-                <!-- 입력한 값을 제출한다. -->
-          <input type="submit" value="완료"  onclick="javascript:location.href='/test01.js';">
-                
-        </form>
 
+#main-title {color:#050099; font-size:30pt; margin-top:20%;text-align: center;}
+html { height:100% }
+body { height:98%; }
+</style>
+</head>
+
+<div>
+
+<tr style="height:30%"><td></td></tr>
+<tr style="height:40%; text-align:center"><td>
+<table style="width:600px" align="center">
+<tr><td><hr /></td></tr>
+<tr>
+<td id = "main-title">LOGIN</td>
+</tr>
+<tr><td><hr /></td></tr>
+</table>
+
+<table align="center" height="90" class = "test">
+<tr>
+<th>아이디 : </th>
+<td><input type = "text" id = "id"></td>
+</tr>
+
+<tr>
+<th>패스워드 : </th>
+<td><input type = "password" id = "password" class = "test"></td>
+</tr>
+</table>
+
+<table align="center" height="50">
+		<tr>
+			<td id=a><a style=text-decoration:none href="" >회원가입 |</td>
+			<td><a style=text-decoration:none href="" >로그인 |</td>
+			<td><a style=text-decoration:none href="" >취소</td>
+		</tr>
+</table>
+
+</div>
+
+<script src='common.js'></script>
+<script src='login1.js'></script>
+<script src='main.html'></script>
 
 </body>
 </html>

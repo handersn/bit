@@ -1,0 +1,300 @@
+<!-- 제작자 : 김광철, 반기백	//	감독 : 엄진영 강사님 -->
+<!-- 목표 : 오늘보다 나은 쓰레기를 만들자!! -->
+
+<!-- 소스설명 (포인트) :
+1) 제이쿼리를 사용하지 않고 common함수를 사용한다. 
+2) 일회성이지만 페이지가 유지되는동안 DB없이 회원관리 할 수 있게 만들었다. [배운거 다 사용하고, 복습할 수 있게 계기가 되었다..]
+3) 회원관리 목록에  없으면 로그인이 안된다. 
+4) [중요] 데이터를 영구 저장할 수 없다. 또한 화면이 바뀔경우 그 값이 초기화되는 문제가 발생하였다. 
+       그로인해 한 화면에 출력을 하되 번갈아 가며 출력을 하게 하였다.-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+<style>
+
+
+#main-title {color:#050099; font-size:30pt; margin-top:20%;}
+html { height:100% }
+body { height:98%; }
+</style>
+</head>
+
+<body id="body" style="background-color:#FFDF24" align="center">
+
+
+<!-- ------------ Login (로그인화면) -------------- -->
+
+<form> <!-- form으로 크게 묶어야 합니다. (그래야 모든 버튼 설정이 되어있는 값들이 제대로 작동합니다.) ex) reset of 버튼 -->
+
+<div class = "create" style="margin: 280px auto" >
+
+	<table>
+		<tr style="height:30%"><td></td></tr>
+		<tr style="height:40%; text-align:center"><td>
+	</table>
+
+	<table style="width:600px" align="center">
+		<tr><td><hr /></td></tr>
+		<tr>
+		<td id = "main-title">LOGIN</td>
+		</tr>
+		<tr><td><hr /></td></tr>
+	</table>
+
+	<table align="center" height="90" class = "test">
+		<tr>
+		<th>아이디 : </th>
+		<td><input type = "text" id="id1"></td>
+		</tr>
+
+		<tr>
+		<th>패스워드 : </th>
+		<td><input type = "password" id="password1"></td>
+		</tr>
+	</table>
+
+		<button id='btnSignup' type='button'>회원가입</button>
+		<button type='button' name="Submit" onclick=validate()  >로그인</button>
+		<button type='reset'>취소</button>
+
+</div>
+
+<!-- -------------------------------------------- -->
+
+
+
+<!-- -------------Sign-up(가입자 목록)--------------- -->
+<!-- : 설명을 돕기위해 화면에 보여지게 하였습니다. 
+	       화면을 숨기고 싶을 경우 class 설정을 create로 바꿔주면 화면에서 사라지게 됩니다. -->
+
+<div class = 'signup' style="margin: 150px auto">
+
+	<table style="width:600px" align="center">
+		<tr><td><hr /></td></tr>
+		<tr>
+		<td id = "main-title">가입자 목록</td>
+		</tr>
+		<tr><td><hr /></td></tr>
+	</table>
+	
+	<table id='boardTable' border='1' align="center">
+		<tr>
+ 		<th>번호</th>
+  		<th>이름</th>
+ 		<th>아이디</th>
+  		<th>패스워드</th>
+  		<th>등록일</th>
+		</tr>
+	</table>
+
+</div>
+
+<!-- ------------- Sign-up (가입하기) -------------- -->
+
+<div class = "signup" >
+
+	<table style="width:600px" align="center">
+		<tr><td><hr /></td></tr>
+		<tr>
+		<td id = "main-title">Sign-up</td>
+		</tr>
+		<tr><td><hr /></td></tr>
+	</table>
+
+	<table align="center" height="90">
+		<tr class="hide">
+ 	 	<th >번호 : </th> 
+ 		<td><input type="text" id="no"></td>
+		</tr>
+
+		<tr>
+ 		<th>이 름 : </th> 
+  		<td><input type="text" id="writer"></td>
+		</tr>
+
+		<tr>
+ 		<th>아이디 : </th> 
+  		<td><input type="text" id="id" ></td>
+		</tr>
+
+		<tr>
+ 		<th>패스워드 : </th> 
+  		<td><input type="password" id="password" ></td>
+		</tr>
+		<tr class="hide">
+ 		<th>등록일 : </th> 
+  		<td><input type="text" id="date"></td>
+		</tr>
+	</table>
+	
+		<button id='btnMove' type='reset'>첫화면으로</button>
+		<button id='btnAdd' type='button' >가입</button>
+		<button id='btnChange' type='button' >변경</button>
+
+
+</div>
+
+</form>
+
+<!-- ------------------------------------------- -->
+
+
+<!-- --------- 여기서부터는 [자바스크립트]입니다. --------- -->
+
+<script src='common.js'></script> <!-- 제이쿼리가 없기 때문에 기존에 만들어 놨던 common함수를 호출 하였습니다. -->
+<script>
+"use strict"; 
+
+function changeState(state) {								// 항목이동시 화면을 번갈아 가며 출력을 할 수 있게 해주는 함수입니다.
+	var stateMap = {
+			create: 'none',
+			hide: 'none',
+			signup: 'none'
+	};
+
+	stateMap[state] = '';
+
+	$('.hide').css('display', stateMap.hide);
+	$('.create').css('display', stateMap.create);
+	$('.signup').css('display', stateMap.signup);
+	
+}
+
+
+function Board(id, writer, password) {						// 객체들을 저장하는 함수입니다.
+	this.writer = writer;
+	this.id = id;
+	this.password = password;
+	this.date = new Date();
+}
+
+function resetForm() {
+	$('#btnMove').click();
+};
+
+function refreshBoardList() {								// 가입시  회원관리항목에 출력되게 해주는 함수입니다.
+	var boardTable = $('#boardTable');
+	
+	$('.dataRow').remove();
+
+	for (var i in boardList) {
+		$('<tr>')
+			.appendTo(boardTable)
+			.append($('<td>').html(i))
+			.attr('class', 'dataRow')
+			.append($('<td>').html(boardList[i].writer))
+			.append($('<td>')
+					.append($('<a>')
+							.attr('bno', new String(i))
+							.attr('href', '#')
+							.click(loadBoardDetail)
+							.html(boardList[i].id)))
+			.append($('<td>').html(boardList[i].password))
+			.append($('<td>').html($.toYYYYMMDD(boardList[i].date)));
+			
+	}
+}
+
+function loadBoardDetail(event) {							// 가입된 항목을 다시 불러들일수 있고, 수정할수 있게 해주는 함수입니다.
+	event.preventDefault();
+
+	changeState('signup');
+
+	var board = boardList[$(this).attr('bno')];
+	$('#no').val($(this).attr('bno'));
+	$('#writer').val(board.writer);
+	$('#id').val(board.id);
+	$('#password').val(board.password);
+	$('#date').val($.toYYYYMMDD(board.date));
+}
+
+function validate(){										// 아이디 &암호가 일치하는지 검사하는 [반복,조건문] 함수입니다.
+	 var id1=document.getElementById('id1').value;
+	 var password1=document.getElementById('password1').value;
+	 var flag=1;
+	 var i=0;
+	 
+	 for(var i=0; i<boardList.length ; i++){
+		 if(id1 == boardList[i].id && password1 == boardList[i].password){
+			 alert(id1 +"님 환영합니다.");
+						 load('NumberGame.html');
+						 
+	      }//end if 
+      }//end if  
+	     //end for  
+	 }// end validate() 
+	 
+
+	 /* for(var i=0; i<boardList.length ; i++){
+		 if(id1 == boardList[i].id && password1 == boardList[i].password){
+			 alert(id1 +"님 환영합니다.");
+						 load('NumberGame.html');
+						 
+	      }//end if 
+      }//end if  
+	     //end for  
+	 }// end validate()  */
+	 
+	 
+function load(url){											// 게임의 시작페이지로 이동하게 합니다. (조건 : 아이디&암호 일치 여부를 묻고 이동하게 한다.)
+	    location.href = 'NumberGame.html'; 
+  
+}
+<!-- --------------------------------------- -->
+
+
+<!-- ------- 실제적으로 일어나는 함수들 입니다.--------- -->
+	 
+changeState('create'); 							// create로 class 설정 된 함수들만 호출하라는 명령 함수입니다. [Login 화면만 보여지게 되겠습니다.]	 
+	 
+var boardList = [];
+
+$('#btnAdd').click(function(event) {			// Sign-up창에서 가입 누를시, 
+	var board = new Board(						// 회원관리 창에 값이 저장된 후 화면에 출력되게 되고, 그 후 로그인창으로 다시 이동하게 됩니다.
+			$('#id').val(),
+			$('#writer').val(),
+			$('#password').val());
+	
+	boardList.push(board); 	
+
+	refreshBoardList();
+	
+	resetForm();
+	alert("가입 되었습니다.");
+	changeState('create');
+	
+});
+
+
+$('#btnSignup').click(function(event){			// 회원가입을 누를시 값을 창에서 가입 페이지로 이동하게 됩니다.
+	var a=document.getElementById(id1);
+	var b=document.getElementById(password1);
+	a='',b='';
+	
+	changeState('signup');
+});
+
+
+$('#btnChange').click(function(event){			// 회원가입된 계정의 값을 변경할 수 있게 해줍니다.
+	var no = $('#no').val();
+	var board = boardList[no];
+	board.id = $('#id').val();
+	refreshBoardList();
+});
+
+
+$('#btnMove').click(function(event) {			// 로그인 페이지로 이동하게 됩니다.
+	changeState('create');
+});
+
+
+<!-- --------------------------------------- -->
+
+</script>
+
+</body>
+</html>

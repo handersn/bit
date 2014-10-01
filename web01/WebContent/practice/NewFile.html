@@ -4,56 +4,315 @@
 <meta charset="UTF-8">
 <title>게시판</title>
 <style>
-form th{
-  text-align: right;
-}
+
+
+#main-title {color:#050099; font-size:30pt; margin-top:20%;}
+html { height:100% }
+body { height:98%; }
 </style>
 </head>
-<body>
-<h1>게시판 목록</h1>
-<table id=boardTable border="1">
+
+<body id="body" style="background-color:#FFDF24" align="center">
+<form>
+
+<div class = 'signup' style="margin: 150px auto">
+
+<table style="width:600px" align="center">
+<tr><td><hr /></td></tr>
+<tr>
+<td id = "main-title">가입자 목록</td>
+</tr>
+<tr><td><hr /></td></tr>
+<table id='boardTable' border='1' align="center">
 <tr>
   <th>번호</th>
-  <th>제목</th>
-  <th>작성자</th>
+  <th>이름</th>
+  <th>아이디</th>
+  <th>패스워드</th>
   <th>등록일</th>
-  <th>조회수</th>
 </tr>
 </table>
-<h2>게시물 상세정보</h2>
-<form>
-  <table>
-    <tr class="detail">
-    <th>번호</th>
-    <td><input type="text" id="no"></td>    
-    </tr> 
-    <tr>
-     <th>내용</th>
-     <td><textarea id="content"></textarea></td>
-    </tr> 
-    <th>내용</th>
-     <td><input type="text" id=writer></td>
-    </tr>
-    <tr class="create">
-     <th>암호</th>
-     <td><input type="password" id="password"></td>    
-    </tr>
-    <tr class="datail">
-      <th>등록일</th>
-      <td><input type="text" id="date"></td>    
-    </tr>
-  </table>
-  
-  <button id="btnAdd" type="button" class="create">추가</button>
-  <button id="btnChange" type="button" class="detail">변경</button>
-  <button id="btnDelete" type="button" class="create">삭제</button>
-  <button id="btnCancel" type="reset" class="create">취소</button>
+
+</div>
+
+
+
+
+
+
+<!-- ------------ Login -------------- -->
+
+<div class = "create" style="margin: 280px auto" >
+
+<tr style="height:30%"><td></td></tr>
+<tr style="height:40%; text-align:center"><td>
+<table style="width:600px" align="center">
+<tr><td><hr /></td></tr>
+<tr>
+<td id = "main-title">LOGIN</td>
+</tr>
+<tr><td><hr /></td></tr>
+</table>
+
+<table align="center" height="90" class = "test">
+<tr>
+<th>아이디 : </th>
+<td><input type = "text" id="id1"></td>
+</tr>
+
+<tr>
+<th>패스워드 : </th>
+<td><input type = "password" id="password1"></td>
+</tr>
+</table>
+
+
+
+<button id='a' type='button'  >회원가입</button>
+<button type='button' name="Submit" onclick=validate()  >로그인</button>
+<button type='button'>취소</button>
+
+</div>
+<!-- ---------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- -------------Sign-up--------------- -->
+<div class = "signup" >
+
+<table style="width:600px" align="center">
+<tr><td><hr /></td></tr>
+<tr>
+<td id = "main-title">Sign-up</td>
+</tr>
+<tr><td><hr /></td></tr>
+</table>
+
+<table align="center" height="90">
+<tr class="detail">
+  <th >번호 : </th> 
+  <td><input type="text" id="no"></td>
+</tr>
+
+<tr>
+  <th>이 름 : </th> 
+  <td><input type="te
+  xt" id="writer"></td>
+</tr>
+
+<tr>
+  <th>아이디 : </th> 
+  <td><input type="text" id="id" ></td>
+</tr>
+
+
+<tr>
+  <th>패스워드 : </th> 
+  <td><input type="password" id="password" ></td>
+</tr>
+<tr class="detail">
+  <th>등록일 : </th> 
+  <td><input type="text" id="date"></td>
+</tr>
+</table>
+<button id='btnCancel' type='reset'>첫화면으로</button>
+<button id='btnAdd' type='button' >가입</button>
+<button id='btnChange' type='button' >변경</button>
+
 
 </form>
 
-<script src="test69_common.js"></script>
-<script src="test69.js"></script>
+</div>
+<!-- ---------------------------------------- -->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 목표: 자바스크립트와 HTML 소스 분리 -->
+<script src='common.js'></script>
+<script>
+
+
+"use strict"; 
+
+changeState('create');
+function changeState(state) {
+	var stateMap = {
+			create: 'none',
+			detail: 'none',
+			signup: 'none'
+
+			
+	};
+
+	stateMap[state] = '';
+
+	$('.detail').css('display', stateMap.detail);
+	$('.create').css('display', stateMap.create);
+	$('.signup').css('display', stateMap.signup);
+
+}
+
+//게시글을 저장하는 객체 생성자 함수
+function Board(id, writer, password) {
+	this.writer = writer;
+	this.id = id;
+	this.password = password;
+	this.date = new Date();
+}
+
+function resetForm() {
+	$('#btnCancel').click();
+};
+
+var boardList = [];
+
+$('#btnCancel').click(function(event) {
+	changeState('create');
+});
+
+$('#btnAdd').click(function(event) {
+	var board = new Board(
+			$('#id').val(),
+			$('#writer').val(),
+			$('#password').val());
+	
+		
+		
+
+	boardList.push(board); 	
+
+	refreshBoardList();
+	
+	resetForm();
+	alert("가입 되었습니다.");
+	changeState('create');
+});
+
+
+$('#a').click(function(event){
+	var a=document.getElementById(id1);
+	var b=document.getElementById(password1);
+	a='',b='';
+	
+	
+	changeState('signup');
+});
+
+$('#btnDelete').click(function(event){
+	var no = $('#no').val();
+	boardList.splice(no,1);
+	refreshBoardList();
+
+});
+
+$('#btnChange').click(function(event){
+	var no = $('#no').val();
+	var board = boardList[no];
+	board.id = $('#id').val();
+	refreshBoardList();
+});
+
+function refreshBoardList() {
+	var boardTable = $('#boardTable');
+	
+	$('.dataRow').remove();
+
+	for (var i in boardList) {
+		$('<tr>')
+			.appendTo(boardTable)
+			.append($('<td>').html(i))
+			.attr('class', 'dataRow')
+			.append($('<td>').html(boardList[i].writer))
+			.append($('<td>')
+					.append($('<a>')
+							.attr('bno', new String(i))
+							.attr('href', '#')
+							.click(loadBoardDetail)
+							.html(boardList[i].id)))
+			.append($('<td>').html(boardList[i].password))
+			.append($('<td>').html($.toYYYYMMDD(boardList[i].date)));
+			
+	}
+}
+
+function loadBoardDetail(event) {
+	event.preventDefault();
+
+	changeState('signup');
+
+	var board = boardList[$(this).attr('bno')];
+	$('#no').val($(this).attr('bno'));
+	$('#writer').val(board.writer);
+	$('#id').val(board.id);
+	$('#password').val(board.password);
+	$('#date').val($.toYYYYMMDD(board.date));
+}
+
+ function validate(){
+	 var id1=document.getElementById('id1').value;
+	 var password1=document.getElementById('password1').value;
+	 
+	 
+	 
+	  for(var i=0; i<boardList.length ; i++){
+		 if(id1 == boardList[i].id && password1 == boardList[i].password){
+			 alert(id1 +"님 환영합니다.");
+						 load('main.html');
+	      }//end if 
+     }//end for
+	 
+		 if(id1 != boardList[0].id){
+			 alert("아이디 또는 비밀번호가 맞지않습니다."); 
+	 
+      }//end if  */
+	 }// end validate() 
+	 
+	 
+ function load(url){
+	    location.href = 'main.html'; 
+	
+	
+  
+	}
+
+</script>
 
 </body>
 </html>

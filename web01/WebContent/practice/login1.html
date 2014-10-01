@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<script language = "javascript">
+    
+    function validate(text1, text2, text3, text4){
+        if (text1 == text2 && text3 == text4) 
+            load('main.html'); // 맞는 번호일때 들어갈 페이지
+        else {
+        	alert("아이디 또는 비밀번호가 잘못되었습니다.");
+            load('main.html'); // 잘못된 번호일때 보여줄 페이지
+        }
+    }
+     
+    function load(url){
+        location.href = 'main.html';
+    }
+     
+    
+</script>
+
+<body>
+
+
+<form>
+    <table border='0' bgcolor='teal' align='center' width='300'>
+        <tr>
+            <td align=center colspan=2>
+                <font size="4" color="white">
+                    <b>회원 로그인</b>
+                </font>
+            </td>
+        </tr>
+        <tr bgcolor=white>
+            <td align=right>
+                아이디 : 
+            </td>
+            <td>
+                <input type="text" name="text2">
+            </td>
+        </tr>
+        <tr bgcolor=white>
+            <td align=right>
+                비밀번호 : 
+            </td>
+            <td>
+                <input type="password" name="text1">
+            </td>
+        </tr>
+        <tr bgcolor=white>
+            <td align=center colspan=2>
+                <input type="button" value=" 로그인 " name="Submit" onclick=javascript:validate(text2.value,"js",text1.value,"js") >
+            </td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
