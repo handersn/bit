@@ -23,7 +23,7 @@ function bit(value) {
 		for (var i = 0; i < this.length; i++) {
 			this[i].innerHTML = value;
 		}
-		return this;
+		return this;createClass[i]
 	};
 
 	elements.append = function(child) {

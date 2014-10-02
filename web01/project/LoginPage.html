@@ -228,20 +228,39 @@ function validate(){										// 아이디 &암호가 일치하는지 검사하�
       }else{
     	  alert("아이디 또는 패스워드를 확인해주세요");
       }
-	 }// end validate() 
 	 
-
-	 /* for(var i=0; i<boardList.length ; i++){
+	 
+	/*  var i = 0;
+	 
+	 while(i++ < boardList.length){
+		 if(id1 != boardList[i].id || password1 != boardList[i].password){
+			 alert("아이디 혹은 패스워드를 확인하세요.");
+		 
+		 } else { break; }
+		 
+	}
+		 
+	 	 
+ 	for(var i=0; i < boardList.length ; i++){
 		 if(id1 == boardList[i].id && password1 == boardList[i].password){
-			 alert(id1 +"님 환영합니다.");
-						 load('NumberGame.html');
+			  alert(id1 + "님 환영합니다.");
+			  load('NumberGame.html');
+		 }
+	} */
+}//end function
+ 	
+
+			 
+function ture () {
+	alert("로그인")
+}
+
+function flase() {
+	alert("확인해주세요.")
+}
 						 
-	      }//end if 
-      }//end if  
-	     //end for  
-	 }// end validate()  */
-	 
-	 
+						 
+						 
 function load(url){											// 게임의 시작페이지로 이동하게 합니다. (조건 : 아이디&암호 일치 여부를 묻고 이동하게 한다.)
 	    location.href = 'NumberGame.html'; 
   
