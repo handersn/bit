@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>리스너 등록 단축함수</title>
+<script src='jquery-1.11.1.js'></script>
+<script>
+
+  /* click() => 이벤트 리스너 등록
+  
+  */
+  var listener1, listener2, listener3;
+     
+	$(function() {
+// 현재 DOM 트리에 있는 img 태그뿐만 아니라 앞으로 생성될 img 태그에서
+// 대해서도 호출될 리스너를 등록하라!
+$(document).on('click','img', function(event){
+			console.log($(this).attr('src'));
+		});
+		
+		// DOM 트리에서 btn1 아이디의 태그를 찾아 리스너를 추가하라.
+		$('#btn1').click('click',function(event){
+			$('<img>').attr('src','img5.jpg')
+			.css('width','100px')
+			.css('border','5px solid green')
+			.appendTo('body');
+			
+		});
+		
+			
+		
+		
+	});
+</script>
+
+</head>
+
+<body>
+  <button id='btn1'>이미지추가</button>
+  <img id="img1" src='img1.jpg' width='150'>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

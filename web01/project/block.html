@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src='jquery-1.11.1.js'></script>
+<style>
+#t1 {
+	background-color: yellow;
+}
+</style>
+
+</head>
+<body>
+	<table id='t1' border='1' width='300px' height='300px'>
+		<tr>
+			<td class='tb1'></td>
+			<td class='tb2'></td>
+		</tr>
+		<tr>
+			<td class='tb3'></td>
+			<td class='tb4'></td>
+		</tr>
+
+
+	</table>
+	<button id='btn1'>BUTTON</button>
+	<button id='btnReset'>Reset</button>
+
+
+	<script type="text/javascript">
+		/* $(function() {
+
+			$("tb1").hover(function(event) {
+				$(this).css('background-color', 'pink')
+
+			}, function(event) {
+				$(this).css('background-color', 'yellow')
+
+			});
+
+		});
+
+		$(function() {
+
+			$('.tb2').hover(function(event) {
+				$(this).css('background-color', 'pink')
+
+			}, function(event) {
+				$(this).css('background-color', 'yellow')
+
+			});
+
+		});
+		$(function() {
+
+			$('.tb3').hover(function(event) {
+				$(this).css('background-color', 'pink')
+
+			}, function(event) {
+				$(this).css('background-color', 'yellow')
+
+			});
+
+		});
+		$(function() {
+
+			$('.tb4').hover(function(event) {
+				$(this).css('background-color', 'pink')
+
+			}, function(event) {
+				$(this).css('background-color', 'yellow')
+
+			});
+
+		});
+ */
+		$(document).ready(function() {
+			var tdList = $("#t1 td");
+			var arr = [];
+			$("#btn1").click(function() {
+
+				$(tdList).each(function(index, element) {
+
+					var randomNo = Math.floor(Math.random() * 2);
+
+					if (randomNo == 1) {
+						$(tdList[index]).css('background-color', 'black');
+						//console.log(tdList[index]);
+
+						arr.push($(tdList[index]).attr("class"));
+						//console.log(arr);
+
+						setTimeout(function(event) {
+							$(element).css('background-color', 'yellow')
+						}, 1000);
+					} else {
+
+					}
+
+				});
+
+				console.log(arr.length);
+
+			});
+
+			$("td").click(function(event) {
+				var state = false;
+
+				for (i = 0; i < 4; i++) {
+					if (arr[i] == $(this).attr("class")) {
+						state = true;
+					}
+				}
+				if (state == true) {
+					$(this).css("background-color", "blue");
+				} else {
+					$(this).css("background-color", "red");
+				}
+
+			});
+
+			/* 
+			$("#btnReset").click(function(event){
+				
+				
+				arr reset
+			});
+			 */
+
+		});
+	</script>
+
+</body>
+</html>

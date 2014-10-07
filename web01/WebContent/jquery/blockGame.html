@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src='jquery-1.11.1.js'></script>
+<style>
+td {
+background-color: gray;
+ 
+}
+</style>
+</head>
+<script>
+$(function() {
+	$('#t1').hover(function(event){
+		$(this).css('background-color','red');		
+	}, function(event) {
+		$(this).css('background-color','gray');		
+		
+	});		
+	
+	$('#t2').hover(function(event){
+		$(this).css('background-color','red');		
+	}, function(event) {
+		$(this).css('background-color','gray');		
+		
+	});		
+	
+	$('#t3').hover(function(event){
+		$(this).css('background-color','red');		
+	}, function(event) {
+		$(this).css('background-color','gray');		
+		
+	});		
+	
+	$('#t4').hover(function(event){
+		$(this).css('background-color','red');		
+	}, function(event) {
+		$(this).css('background-color','gray');		
+		
+	});		
+	
+	
+	
+	/* $('#btn1').click('click',function(event){
+		$('<td>').css('background-color','orange')
+		.appendTo('body');
+		
+	}); */
+	
+	var r1 = $('#r1');
+	var r2 = $('#r2');
+	var r3 = $('#r3');
+	var r4 = $('#r4');
+	
+		var numList=[r1,r2,r3,r4];
+	  $('#btn1').click('click',function(event){
+		 /* $.each(numList, function(index,item,arr){
+			 console.log(index,item);
+		 }); */
+		
+		   var value = Math.floor((Math.random()*2));		
+		 console.log(value);
+		 if(value == 0){
+			 $('#r1').addClass
+			 
+		 }else if(value == 1){
+			 
+		 }//end else
+			 
+		/*  setInterval(function(){
+			 $('#r1').css('background-color','gray');
+			 $('#r2').css('background-color','gray');
+		 }, 2000);   */
+		 
+	 }); //#btn1
+		 
+		 /* $('#t1,#t2,#t3,#t4').click('click',function(event){
+			 $(this).css('background-color','blue');
+			 }); //#t1,#t2,#t3,#t4 */
+			 
+			 //});// #btn1
+	});  //function()
+    
+ 
+ 
+
+
+</script>
+<body>
+<button id="btn1" width='100px' height='100px'>클릭</button>
+<table id='d1' border="1"  width="500px"  height="500px">
+  <tr id='r1'>
+  <td id='t1' class="outer" ></td>
+  <td id='t2'></td>  
+  </tr>
+  
+   <tr id='r2'>
+  <td id='t3'></td>
+  <td id='t4'></td>  
+  </tr>
+  
+</table>
+</body>
+</html>

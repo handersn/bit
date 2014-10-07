@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>리스너 등록 단축함수</title>
+<script src='jquery-1.11.1.js'></script>
+<script>
+
+  /* click() => 이벤트 리스너 등록
+  
+  */
+     
+	$(function() {
+		var state= false;
+		//버튼을 누를 때 마다 번갈아 가면서 이미지 태그를 생성하라!
+		//img4.jpg와 img5.jpg를 생성.
+		
+		$('#btn1').click('click',function(event){
+			if(state){
+				$('<img>').attr('src','img5.jpg')
+				.css('width','100px')
+				.css('border','5px solid green')
+				.appendTo('body');
+				state=false;
+				
+			}else{
+			$('<img>').attr('src','img4.jpg')
+			.css('width','100px')
+			.css('border','5px solid green')
+			.appendTo('body');
+			state=true;
+				
+			}
+			
+		});
+		
+		/* $('#btn1').toggle(function(event){
+			$('<img>').attr('src','img4.jpg')
+			.css('width','100px')
+			.css('border','5px solid green')
+			.appendTo('body');	
+		},function(event){
+			$('<img>').attr('src','img5.jpg')
+			.css('width','100px')
+			.css('border','5px solid green')
+			.appendTo('body');
+			
+		}
+		
+	}); */
+			
+		
+	});
+</script>
+
+</head>
+
+<body>
+  <button id='btn1'>이미지추가</button>
+  <img id="img1" src='img1.jpg' width='150'>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
