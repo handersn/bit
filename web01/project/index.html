@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src='jquery-1.11.1.js'></script>
+<style>
+#t1 {
+	background-color: #FAF4C0;  
+	margin: 50px 50px -30px 50px;
+}
+
+#btn1 {
+margin: 50px;
+}
+</style>
+
+</head>
+<body>
+	<table id='t1' border='1' width='300px' height='300px'>
+		<tr>
+			<td class='tb1'></td>
+			<td class='tb2'></td>
+			<td class='tb3'></td>
+		</tr>
+		<tr>
+			<td class='tb3'></td>
+			<td class='tb4'></td>
+			<td class='tb6'></td>
+		</tr>
+		<tr>
+			<td class='tb7'></td>
+			<td class='tb8'></td>
+			<td class='tb9'></td>
+		</tr>
+		
+
+
+	</table>
+	   <button id='btn1'>BUTTON</button>
+	
+
+
+	<script type="text/javascript">
+	/* 
+   	  $(function() {
+			
+			$("td").hover(function(event) {
+				$(this).css('background-color', 'pink')
+
+			}, function(event) {
+				 for (i = 0; i < 9; i++) {
+				if (arr[i] == $(this).attr("class")) {
+				$(this).css('background-color', '#B2EBF4') //파랑
+				} else {
+				$(this).css('background-color', '#FAF4C0') //노랑
+				} 
+				
+				var state = false;
+				
+				for (i = 0; i < 9; i++) {
+					if (arr[i] == $(this).attr("class")) {
+						state = true;
+						
+					}
+				}
+				if (state == true) {
+					$(this).css("background-color", "#B2EBF4"); //파랑
+					
+					 
+				} else {
+						$(this).css("background-color", '#FAF4C0'); //레드
+						}
+
+				
+				 }
+				
+				 });
+
+		});  
+  	  
+  	   */
+  	  
+  	/* var state = false;
+	
+	for (i = 0; i < 9; i++) {
+		if (arr[i] == $(this).attr("class")) {
+			state = true;
+			
+		}
+	}
+	if (state == true) {
+		$(this).css("background-color", "#B2EBF4"); //파랑
+		clickCnt = clickCnt+1;
+		count = count + 1;
+		
+		 
+	} else {
+		if (count>0){
+			$(this).css("background-color", "#DF4D4D"); //레드
+			count = count + 1;
+		}
+	}
+	
+  	   */
+  	  
+  	  
+  	  
+  	  
+  	  
+  	  
+  	  
+  	  
+/* 
+		$(function() {
+
+			$('.tb2').hover(function(event) {
+				$(this).css('background-color', 'pink')
+
+			}, function(event) {
+				$(this).css('background-color', 'yellow')
+
+			});
+
+		});
+		$(function() {
+
+			$('.tb3').hover(function(event) {
+				$(this).css('background-color', 'pink')
+
+			}, function(event) {
+				$(this).css('background-color', 'yellow')
+
+			});
+
+		});
+		$(function() {
+
+			$('.tb4').hover(function(event) {
+				$(this).css('background-color', 'pink')
+
+			}, function(event) {
+				$(this).css('background-color', 'yellow')
+
+			});
+
+		});
+  */
+ var arr = [];
+ var clickCnt = 0;
+ var count = 0;
+		$(document).ready(function() {
+			var tdList = $("#t1 td");
+			//var arr = [];
+			$("#btn1").click(function() {
+
+				
+				 $(tdList).each(function(index, element) {
+
+					var randomNo = Math.floor(Math.random() * 2);
+
+					if (randomNo == 1) {
+						
+						$(tdList[index]).css('background-color', '#CEFBC9');//그린
+						//console.log(tdList[index]);
+
+						arr.push($(tdList[index]).attr("class"));
+						//console.log(arr);
+
+						setTimeout(function(event) {
+							$(element).css('background-color', '#FAF4C0') //노랑
+						}, 500);
+					} else {
+
+					}
+
+				});
+			/* 
+			 var arrCnt	= arr.length;
+			 console.log('arr'+arrCnt); */
+					
+				 }); 
+				
+			
+			//var clickCnt = 0;
+			$("td").click(function(event) {
+				var state = false;
+				
+				for (i = 0; i < 9; i++) {
+					if (arr[i] == $(this).attr("class")) {
+						state = true;
+						
+					}
+				}
+				if (state == true) {
+					$(this).css("background-color", "#B2EBF4"); //파랑
+					clickCnt = clickCnt+1;
+					count = count + 1;
+					
+					 
+				} else {
+					if (count>0){
+						$(this).css("background-color", "#DF4D4D"); //레드
+						count = count + 1;
+					}
+				}
+				
+				var arrCnt	= arr.length;
+				 console.log('arr'+arrCnt);
+				 console.log('click'+clickCnt);
+				 console.log('count'+count);
+				 
+				
+				if (arrCnt==0) {
+					alert('BUTTON을 눌러주세요');
+				} else if(arrCnt==clickCnt) {
+					 alert(' 성공');
+					 location.reload(); 
+				 }  else if (arrCnt==count) {
+					alert('실패');
+					location.reload(); 
+				 }
+				 
+				 
+			});
+			
+			
+			
+			
+			/* 
+			$("#btnReset").click(function(event){
+				
+				
+				arr reset
+			});
+			 */
+
+		});
+		
+		
+ 
+	</script>
+
+</body>
+</html>
