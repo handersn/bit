@@ -17,21 +17,20 @@
  * */
 package java01;
 
-import java.util.Scanner;
-
 public class Test18 {
 
   public static void main(String[] args) {
     System.out.println("당신의 나이가 어떻게 되는지 다음 보기에서 고르시오!");
     System.out.println("1)10\n2)20대\n3)30대\n4)40대\n5)50대\n6)기타\n번호?");
     
-    java.util.Scanner scanner = new java.util.Scanner(System.in);
-    String input = scanner.nextLine();
+    java.util.Scanner scan = new java.util.Scanner(System.in);
+    String input = scan.nextLine();
     
     int age = Integer.parseInt(input);
     
     
       
+    
       switch (age) {
       case 1: System.out.println("10대 입니다.");
                    break;
