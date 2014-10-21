@@ -5,7 +5,7 @@ public class Test42 {
   public static void main(String[] args) {
     Tico c1 = new Tico();
     Jeep c2 = new Jeep();
-    Cabrio c3 = new Cabrio();
+    carbrio c3 = new carbrio();
     
     // Car 클래스는 Generalization을 위해 정의한 클래스이다.
     // 직접 사용할 목적으로 정의한 것이 아니라,

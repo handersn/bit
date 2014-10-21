@@ -9,6 +9,7 @@ public class Test44_1 {
     
     Vulture v1 = new Vulture();
     v1.move(Mover.SOUTH);
+    System.out.println();
     
     Soldier s1 = new Soldier();
     s1.move(Mover.EAST);
