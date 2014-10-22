@@ -42,14 +42,14 @@ class MyArray2 {
 
     System.out.println(this.cursor);
     System.out.println(list.length);
-    if((pos >= 0)  &&  (pos < list.length) && (this.cursor < list.length)){      
+    if((pos >= 0)  &&  (pos < this.cursor) && (this.cursor < list.length)){      
         for(int i= this.cursor ; i > pos ;i--){
           list[i] = list[i-1];
         }//end for
-        this.cursor++;
         list[pos]=value;
+        this.cursor++;
 
-    }//end if
+    }//end 
     return -1;
   }
 }
@@ -92,22 +92,10 @@ public class CollectionTest03 {
       System.out.println(arr.get(i));
     }// for
 
-    arr.insert(2, "$$$$$");
-    System.out.println("-----------------");
-    for (int i = 0; i < arr.size(); i++) {
-      System.out.println(arr.get(i));
-    }// for
-    arr.insert(2, "%%%%%");
-    System.out.println("-----------------");
-    for (int i = 0; i < arr.size(); i++) {
-      System.out.println(arr.get(i));
-    }// for
     
-    arr.insert(2, "000000");
-    System.out.println("-----------------");
-    for (int i = 0; i < arr.size(); i++) {
-      System.out.println(arr.get(i));
-    }// for
+    
+    
+    
   }
 
 }
