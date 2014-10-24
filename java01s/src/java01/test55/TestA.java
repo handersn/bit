@@ -43,4 +43,3 @@ public class TestA implements Gamer {
     
   }
 
-}
