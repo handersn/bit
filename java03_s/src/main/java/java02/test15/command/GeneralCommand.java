@@ -1,0 +1,34 @@
+package java02.test15.command;
+
+import java.util.Map;
+
+import java02.test15.ProductDao;
+import java02.test15.annotation.Command;
+import java02.test15.annotation.Component;
+import java02.test15.ProductDao;
+
+@Component
+public class GeneralCommand {
+  ProductDao productDao;
+  
+  public void setProductDao(ProductDao productDao) {
+    this.productDao = productDao;
+  }
+
+  @Command("exit")
+  public void doExit(Map<String, Object> params) throws Exception {
+      System.out.println("안녕히 가세요.");
+  }
+  
+  @Command("help")
+  public void doHelp(Map<String, Object> params) throws Exception {
+    System.out.println("list");
+    System.out.println("view 제품번호");
+    System.out.println("add");
+    System.out.println("delete");
+    System.out.println("update");
+    System.out.println("exit");
+  }
+  
+  
+}
