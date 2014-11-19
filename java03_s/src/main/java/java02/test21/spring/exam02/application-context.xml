@@ -17,13 +17,18 @@
 	<bean name="b03 b04 b05" class="java02.test21.spring.exam02.Car" />
 
 	<!--빈의 아이디와 별명을 함께 설정 할 수 있다. -->
-	<bean id="b100" name="b03 b04 b05" class="java02.test21.spring.exam02.Car" />
+	<bean id="b100" name="b06 b07 b08" class="java02.test21.spring.exam02.Car" />
 
 	<!--빈의 별명을 구분할 때 콤마(,)를 사용할 수 있다. -->
 	<bean name="b11,b12,b13" class="java02.test21.spring.exam02.Car" />
 
 	<!-- 빈의 별명을 구분할 때 세미콜론(;)을 사용할 수 있다. -->
 	<bean name="b21;b22;b23" class="java02.test21.spring.exam02.Car" />
+	
+	<!-- 빈의 이름을 지정하지 않으면, 패키지명+클래스명+#인덱스  -->
+	<bean class="java02.test21.spring.exam02.Car"/>
+	<bean class="java02.test21.spring.exam02.Car"/>
+	<bean class="java02.test21.spring.exam02.Car"/>
 
 
 </beans>
